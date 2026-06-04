@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeatStream - Music Platform for Artists</title>
+    <title>LibMusic - Liberia's Music Platform</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <!-- Glass Navigation -->
+    <nav class="navbar navbar-expand-lg glass-nav fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <i class="fas fa-headphones me-2"></i>BeatStream
+                <i class="fas fa-music me-2"></i>LibMusic
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -21,29 +21,35 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About Liberia</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-primary text-white px-4" href="#" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link btn-glow px-4" href="#" data-bs-toggle="modal" data-bs-target="#signupModal">Get Started</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Hero Section with Glass Effect -->
+    <section class="hero-glass">
         <div class="container">
             <div class="row min-vh-100 align-items-center">
-                <div class="col-lg-6">
-                    <h1 class="display-3 fw-bold mb-4">Upload Your Music. Build Your Audience.</h1>
-                    <p class="lead mb-4">Join thousands of artists distributing their music to millions of listeners. Get paid, get heard, get discovered.</p>
-                    <button class="btn btn-primary btn-lg me-3" data-bs-toggle="modal" data-bs-target="#signupModal">Start Free Trial</button>
-                    <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                <div class="col-lg-7">
+                    <div class="glass-card p-5">
+                        <h1 class="display-3 fw-bold mb-3">Digital Liberia</h1>
+                        <h2 class="display-5 mb-4">LibMusic <span class="text-glow">🎵</span></h2>
+                        <p class="lead mb-4">Where Liberian music meets the world. Upload your tracks, build your audience, and showcase the rich sounds of Liberia - from HipCo to AfroBeats.</p>
+                        <div class="d-flex gap-3">
+                            <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#signupModal">Start Your Journey</button>
+                            <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="floating-music">
-                        <i class="fas fa-music"></i>
+                <div class="col-lg-5">
+                    <div class="floating-elements">
+                        <i class="fas fa-drum"></i>
+                        <i class="fas fa-guitar"></i>
+                        <i class="fas fa-microphone-alt"></i>
                         <i class="fas fa-headphones"></i>
-                        <i class="fas fa-microphone"></i>
                     </div>
                 </div>
             </div>
@@ -51,29 +57,54 @@
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="features py-5">
+    <section id="features" class="py-5">
         <div class="container">
-            <h2 class="text-center mb-5">Why Artists Love BeatStream</h2>
+            <h2 class="text-center mb-5">Elevate Your Music Career</h2>
             <div class="row g-4">
                 <div class="col-md-4">
-                    <div class="feature-card">
+                    <div class="glass-card text-center p-4">
                         <i class="fas fa-upload fa-3x mb-3"></i>
-                        <h4>Easy Upload</h4>
-                        <p>Upload your tracks in seconds. Support for MP3, WAV, and FLAC formats.</p>
+                        <h4>Upload Anything</h4>
+                        <p>MP3, MP4, WAV, FLAC - no restrictions. Share your music your way.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="feature-card">
+                    <div class="glass-card text-center p-4">
                         <i class="fas fa-chart-line fa-3x mb-3"></i>
-                        <h4>Analytics Dashboard</h4>
-                        <p>Track your streams, earnings, and audience growth in real-time.</p>
+                        <h4>Track Your Growth</h4>
+                        <p>Real-time analytics for streams, listeners, and earnings.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="feature-card">
+                    <div class="glass-card text-center p-4">
                         <i class="fas fa-globe fa-3x mb-3"></i>
-                        <h4>Global Distribution</h4>
-                        <p>Reach listeners on our mobile app and web platform worldwide.</p>
+                        <h4>Global Reach</h4>
+                        <p>Share Liberian music with the world through our platform.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Liberia Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="glass-card p-5">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h3 class="mb-3">The Sound of Liberia</h3>
+                        <p>From the rhythmic beats of HipCo to the soulful vibes of AfroBeats, Liberian music is taking over. LibMusic is the home for artists pushing boundaries and creating the future of African music.</p>
+                        <div class="mt-4">
+                            <span class="badge bg-primary me-2">HipCo</span>
+                            <span class="badge bg-primary me-2">TrapCo</span>
+                            <span class="badge bg-primary me-2">KoloPop</span>
+                            <span class="badge bg-primary me-2">Koloress</span>
+                            <span class="badge bg-primary">AfroBeats</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <i class="fas fa-map-marker-alt fa-4x text-center d-block"></i>
+                        <p class="text-center mt-2">Monrovia to the World</p>
                     </div>
                 </div>
             </div>
@@ -83,7 +114,7 @@
     <!-- Login Modal -->
     <div class="modal fade" id="loginModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-dark text-white">
+            <div class="modal-content glass-modal">
                 <div class="modal-header border-0">
                     <h3 class="modal-title">Welcome Back</h3>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
@@ -92,11 +123,11 @@
                     <form id="loginForm">
                         <div class="mb-3">
                             <label class="form-label">Email</label>
-                            <input type="email" id="loginEmail" class="form-control bg-dark text-white border-secondary" required>
+                            <input type="email" id="loginEmail" class="form-control glass-input" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Password</label>
-                            <input type="password" id="loginPassword" class="form-control bg-dark text-white border-secondary" required>
+                            <input type="password" id="loginPassword" class="form-control glass-input" required>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Login</button>
                     </form>
@@ -108,22 +139,22 @@
     <!-- Signup Modal -->
     <div class="modal fade" id="signupModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-dark text-white">
+            <div class="modal-content glass-modal">
                 <div class="modal-header border-0">
-                    <h3 class="modal-title">Create Account</h3>
+                    <h3 class="modal-title">Join LibMusic</h3>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <form id="signupForm">
                         <div class="mb-3">
                             <label class="form-label">Email</label>
-                            <input type="email" id="signupEmail" class="form-control bg-dark text-white border-secondary" required>
+                            <input type="email" id="signupEmail" class="form-control glass-input" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Password</label>
-                            <input type="password" id="signupPassword" class="form-control bg-dark text-white border-secondary" required>
+                            <input type="password" id="signupPassword" class="form-control glass-input" required>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                        <button type="submit" class="btn btn-primary w-100">Create Account</button>
                     </form>
                 </div>
             </div>
