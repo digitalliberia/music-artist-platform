@@ -2,15 +2,37 @@ import { auth, db, storage } from './firebase-config.js';
 import { collection, query, where, getDocs, doc, getDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { ref, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
+// Load profile picture in navbar
+const loadProfilePicture = async () => {
+    const userId = auth.currentUser?.uid;
+    if (userId) {
+        try {
+            const artistRef = doc(db, 'artists', userId);
+            const artistDoc = await getDoc(artistRef);
+            if (artistDoc.exists() && artistDoc.data().profilePictureUrl) {
+                const navProfilePic = document.getElementById('navProfilePic');
+                const navProfileIcon = document.getElementById('navProfileIcon');
+                navProfilePic.src = artistDoc.data().profilePictureUrl;
+                navProfilePic.style.display = 'block';
+                navProfileIcon.style.display = 'none';
+            }
+        } catch (error) {
+            console.error('Error loading profile picture:', error);
+        }
+    }
+};
+
+// Load dashboard data
 const loadDashboard = async () => {
     const userId = auth.currentUser?.uid;
     if (!userId) return;
     
-    // Load artist profile
+    // Load artist profile and display name
     const artistRef = doc(db, 'artists', userId);
     const artistDoc = await getDoc(artistRef);
     if (artistDoc.exists()) {
-        document.getElementById('userEmail').textContent = artistDoc.data().artistName || auth.currentUser.email;
+        const artistData = artistDoc.data();
+        document.getElementById('userEmail').textContent = artistData.artistName || auth.currentUser.email;
     } else {
         document.getElementById('userEmail').textContent = auth.currentUser.email;
     }
@@ -25,6 +47,14 @@ const loadDashboard = async () => {
     });
     
     document.getElementById('totalTracks').textContent = tracks.length;
+    
+    // Calculate total streams (mock data for now)
+    const totalStreams = tracks.reduce((sum, track) => sum + (track.streams || 0), 0);
+    document.getElementById('totalStreams').textContent = totalStreams;
+    
+    // Mock data for listeners and earnings (can be enhanced later)
+    document.getElementById('totalListeners').textContent = Math.floor(totalStreams * 0.7);
+    document.getElementById('totalEarnings').textContent = `$${(totalStreams * 0.004).toFixed(2)}`;
     
     // Display tracks with delete buttons
     const musicLibrary = document.getElementById('musicLibrary');
@@ -47,11 +77,12 @@ const loadDashboard = async () => {
         const trackCard = `
             <div class="col-md-6 col-lg-4">
                 <div class="music-card">
-                    ${track.coverUrl ? `<img src="${track.coverUrl}" class="card-img-top" alt="Cover art">` : '<div class="card-img-top bg-gradient text-center p-5"><i class="fas fa-music fa-3x"></i></div>'}
+                    ${track.coverUrl ? `<img src="${track.coverUrl}" class="card-img-top" alt="Cover art" style="height: 200px; object-fit: cover;">` : '<div class="card-img-top bg-gradient text-center p-5" style="background: linear-gradient(135deg, #667eea, #764ba2); height: 200px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-music fa-4x"></i></div>'}
                     <div class="music-info">
-                        <h5>${track.title}</h5>
-                        <p class="text-muted">${track.duration} seconds</p>
-                        <small>Uploaded: ${new Date(track.uploadedAt?.toDate()).toLocaleDateString()}</small>
+                        <h5>${escapeHtml(track.title)}</h5>
+                        <p class="text-muted mb-1">Duration: ${track.duration} seconds</p>
+                        <p class="text-muted small">Streams: ${track.streams || 0}</p>
+                        <small>Uploaded: ${track.uploadedAt?.toDate ? new Date(track.uploadedAt.toDate()).toLocaleDateString() : 'Recent'}</small>
                         <br>
                         <audio controls class="mt-2" style="width: 100%">
                             <source src="${audioUrl}" type="audio/mpeg">
@@ -91,15 +122,34 @@ const loadDashboard = async () => {
     });
 };
 
-document.getElementById('logoutBtn')?.addEventListener('click', () => {
+// Helper function to escape HTML
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Logout functionality
+document.getElementById('logoutBtn')?.addEventListener('click', (e) => {
+    e.preventDefault();
     auth.signOut();
     window.location.href = 'index.html';
 });
 
-auth.onAuthStateChanged((user) => {
+// Auth state listener
+auth.onAuthStateChanged(async (user) => {
     if (user) {
-        loadDashboard();
+        await loadProfilePicture();
+        await loadDashboard();
     } else {
         window.location.href = 'index.html';
+    }
+});
+
+// Listen for profile updates from profile page
+window.addEventListener('message', (event) => {
+    if (event.data === 'profileUpdated') {
+        loadProfilePicture();
+        location.reload();
     }
 });
